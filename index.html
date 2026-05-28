@@ -31,7 +31,7 @@
       font-family: Manrope, Inter, Arial, Helvetica, sans-serif;
     }
 
-    button, input { font: inherit; }
+    button, input, select { font: inherit; }
     button { border: 0; cursor: pointer; }
     a { color: inherit; }
 
@@ -94,6 +94,13 @@
       padding: 7px 10px;
     }
 
+    .top-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: -4px 0 14px;
+    }
+
     .lock-panel,
     .section {
       border: 1px solid var(--line);
@@ -130,7 +137,142 @@
       color: #182230;
     }
 
+    details.section summary.section-title {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    details.section summary.section-title::-webkit-details-marker { display: none; }
+
+    details.section summary.section-title::after {
+      content: "+";
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1;
+      transition: transform .16s ease;
+    }
+
+    details.section[open] summary.section-title::after {
+      transform: rotate(45deg);
+    }
+
     .section-body { padding: 16px; }
+
+    .template-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .template-option {
+      width: 100%;
+      display: grid;
+      gap: 8px;
+      min-height: 128px;
+      border: 1px solid #d2deef;
+      border-radius: 8px;
+      background: #fff;
+      color: #24364f;
+      padding: 10px;
+      text-align: left;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .template-option:hover {
+      transform: translateY(-1px);
+      border-color: #a8bee0;
+      box-shadow: 0 10px 28px rgba(21, 80, 183, .12);
+    }
+
+    .template-option strong,
+    .template-option span {
+      display: block;
+    }
+
+    .template-option strong {
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .template-option span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.35;
+      font-weight: 400;
+    }
+
+    .mini-preview {
+      height: 54px;
+      border: 1px solid #d9e3f2;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 8px;
+      display: grid;
+      grid-template-columns: 1.1fr 1px 1fr;
+      gap: 8px;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .mini-preview.dark { background: #101828; border-color: #25344b; }
+    .mini-preview.center { grid-template-columns: 1fr; text-align: center; }
+    .mini-preview.banner { border-bottom: 6px solid var(--brand); }
+    .mini-preview.card { box-shadow: inset 0 0 0 1px rgba(21,80,183,.08); }
+
+    .mini-lines,
+    .mini-contact,
+    .mini-awards {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .mini-line {
+      height: 5px;
+      border-radius: 999px;
+      background: #1550b7;
+    }
+
+    .mini-line.short { width: 55%; background: #98a2b3; }
+    .mini-line.tiny { width: 36%; height: 4px; background: #c9d8f0; }
+    .mini-divider { width: 1px; height: 36px; background: #c9d8f0; }
+
+    .mini-dots {
+      display: flex;
+      gap: 4px;
+      margin-top: 3px;
+    }
+
+    .mini-dots i,
+    .mini-awards i {
+      display: block;
+      border-radius: 50%;
+      background: #1550b7;
+    }
+
+    .mini-dots i { width: 7px; height: 7px; }
+
+    .mini-awards {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      align-items: end;
+    }
+
+    .mini-awards i {
+      width: 14px;
+      height: 14px;
+      background: #0c367f;
+    }
+
+    .template-option.active {
+      border-color: var(--brand);
+      background: #eef4ff;
+      box-shadow: var(--focus);
+    }
 
     .field { margin-bottom: 14px; }
     .field:last-child { margin-bottom: 0; }
@@ -151,7 +293,8 @@
       font-weight: 400;
     }
 
-    .field input {
+    .field input,
+    .field select {
       width: 100%;
       min-height: 40px;
       border: 1px solid #cfd8e8;
@@ -164,9 +307,47 @@
     }
 
     .field input:focus,
+    .field select:focus,
     .photo-drop:focus-within {
       border-color: var(--brand);
       box-shadow: var(--focus);
+    }
+
+    .field input[type="range"] {
+      min-height: 28px;
+      padding: 0;
+      accent-color: var(--brand);
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid #d2deef;
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .segment {
+      min-height: 34px;
+      border-radius: 6px;
+      background: transparent;
+      color: #344054;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .segment.active {
+      background: #fff;
+      color: var(--brand);
+      box-shadow: 0 4px 14px rgba(21,80,183,.12);
     }
 
     .photo-drop {
@@ -174,6 +355,11 @@
       border-radius: 8px;
       background: #fbfcff;
       padding: 12px;
+    }
+
+    .photo-drop.dragover {
+      border-color: var(--brand);
+      background: #eef4ff;
     }
 
     .photo-row {
@@ -188,6 +374,8 @@
       border: 1px solid #d7e3f5;
       background: #eef4ff;
       object-fit: cover;
+      transform: scale(var(--photo-zoom, 1));
+      border-radius: var(--photo-radius, 0);
     }
 
     .photo-empty {
@@ -320,6 +508,31 @@
       font-size: 13px;
     }
 
+    .preview-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .tool-button {
+      min-height: 34px;
+      border: 1px solid #cfd8e8;
+      border-radius: 8px;
+      background: #fff;
+      color: #344054;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 0 10px;
+      transition: background .16s ease, border-color .16s ease, color .16s ease;
+    }
+
+    .tool-button.active {
+      border-color: var(--brand);
+      background: #eef4ff;
+      color: var(--brand);
+    }
+
     .preview-shell {
       min-height: 500px;
       display: flex;
@@ -335,12 +548,30 @@
       border-radius: 8px;
       box-shadow: var(--shadow);
       overflow: auto;
+      transition: background .18s ease, min-height .18s ease;
+    }
+
+    .preview-shell.dark-env {
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        #111827;
+    }
+
+    .preview-shell.mobile-mode {
+      min-height: 620px;
+    }
+
+    .preview-shell.mobile-mode .signature-stage {
+      max-width: 390px;
+      overflow: auto;
     }
 
     .signature-stage {
       width: max-content;
       max-width: 100%;
       transform-origin: center top;
+      transition: transform .18s ease;
     }
 
     .notice-board {
@@ -457,8 +688,20 @@
         <p>Logo, awards, colors, divider, social icons, company links, typography, and layout are fixed by default for every employee export.</p>
       </div>
 
-      <section class="section" aria-labelledby="employeeDetailsTitle">
-        <div class="section-title" id="employeeDetailsTitle">Employee details</div>
+      <div class="top-actions">
+        <button class="btn btn-quiet" type="button" id="undoButton">Undo</button>
+        <button class="btn btn-quiet" type="button" id="redoButton">Redo</button>
+      </div>
+
+      <details class="section" aria-labelledby="templateTitle" open>
+        <summary class="section-title" id="templateTitle">Premium templates</summary>
+        <div class="section-body">
+          <div class="template-grid" id="templateGrid" aria-label="Signature template options"></div>
+        </div>
+      </details>
+
+      <details class="section" aria-labelledby="employeeDetailsTitle" open>
+        <summary class="section-title" id="employeeDetailsTitle">Employee details</summary>
         <div class="section-body">
           <div class="field">
             <label for="name">Full name</label>
@@ -481,10 +724,10 @@
             <input id="employeeLinkedin" data-field="employeeLinkedin" type="url" value="http://www.linkedin.com/in/gadisaibharath">
           </div>
         </div>
-      </section>
+      </details>
 
-      <section class="section" aria-labelledby="photoTitle">
-        <div class="section-title" id="photoTitle">Profile image</div>
+      <details class="section" aria-labelledby="photoTitle" open>
+        <summary class="section-title" id="photoTitle">Profile image</summary>
         <div class="section-body">
           <div class="photo-drop">
             <div class="photo-row">
@@ -497,8 +740,137 @@
               </div>
             </div>
           </div>
+          <div class="control-grid" style="margin-top:12px;">
+            <div class="field">
+              <label for="photoZoom">Crop zoom <span class="hint" id="photoZoomValue">100%</span></label>
+              <input id="photoZoom" data-field="photoZoom" type="range" min="100" max="160" value="100">
+            </div>
+            <div class="field">
+              <label>Photo shape</label>
+              <div class="segmented" data-segment-group="photoShape">
+                <button class="segment" type="button" data-value="square">Square</button>
+                <button class="segment" type="button" data-value="rounded">Rounded</button>
+                <button class="segment" type="button" data-value="circle">Circle</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
+      </details>
+
+      <details class="section" aria-labelledby="layoutTitle">
+        <summary class="section-title" id="layoutTitle">Layout and spacing</summary>
+        <div class="section-body">
+          <div class="field">
+            <label>Mode</label>
+            <div class="segmented" data-segment-group="density">
+              <button class="segment" type="button" data-value="compact">Compact</button>
+              <button class="segment" type="button" data-value="balanced">Balanced</button>
+              <button class="segment" type="button" data-value="wide">Wide</button>
+            </div>
+          </div>
+          <div class="field">
+            <label>Alignment</label>
+            <div class="segmented" data-segment-group="signatureAlign">
+              <button class="segment" type="button" data-value="left">Left</button>
+              <button class="segment" type="button" data-value="center">Center</button>
+              <button class="segment" type="button" data-value="right">Right</button>
+            </div>
+          </div>
+          <div class="control-grid">
+            <div class="field">
+              <label for="topPadding">Top padding <span class="hint" id="topPaddingValue"></span></label>
+              <input id="topPadding" data-field="topPadding" type="range" min="-20" max="40" value="0">
+            </div>
+            <div class="field">
+              <label for="bottomPadding">Bottom padding <span class="hint" id="bottomPaddingValue"></span></label>
+              <input id="bottomPadding" data-field="bottomPadding" type="range" min="-20" max="40" value="0">
+            </div>
+            <div class="field">
+              <label for="innerSpacing">Inner spacing <span class="hint" id="innerSpacingValue"></span></label>
+              <input id="innerSpacing" data-field="innerSpacing" type="range" min="-8" max="16" value="0">
+            </div>
+            <div class="field">
+              <label for="rowSpacing">Row spacing <span class="hint" id="rowSpacingValue"></span></label>
+              <input id="rowSpacing" data-field="rowSpacing" type="range" min="-6" max="16" value="0">
+            </div>
+            <div class="field">
+              <label for="dividerSpacing">Divider spacing <span class="hint" id="dividerSpacingValue"></span></label>
+              <input id="dividerSpacing" data-field="dividerSpacing" type="range" min="-18" max="24" value="0">
+            </div>
+            <div class="field">
+              <label for="columnWidth">Column width <span class="hint" id="columnWidthValue"></span></label>
+              <input id="columnWidth" data-field="columnWidth" type="range" min="-28" max="38" value="0">
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="section" aria-labelledby="typeTitle">
+        <summary class="section-title" id="typeTitle">Typography</summary>
+        <div class="section-body">
+          <div class="field">
+            <label for="fontFamily">Font family</label>
+            <select id="fontFamily" data-field="fontFamily">
+              <option value="Manrope, Arial, Helvetica, sans-serif">Manrope</option>
+              <option value="Inter, Arial, Helvetica, sans-serif">Inter</option>
+              <option value="'DM Sans', Arial, Helvetica, sans-serif">DM Sans</option>
+              <option value="Poppins, Arial, Helvetica, sans-serif">Poppins</option>
+              <option value="Calibri, Arial, Helvetica, sans-serif">Calibri</option>
+              <option value="Helvetica, Arial, sans-serif">Helvetica</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Hierarchy preset</label>
+            <div class="segmented" data-segment-group="typePreset">
+              <button class="segment" type="button" data-value="classic">Classic</button>
+              <button class="segment" type="button" data-value="strong">Strong</button>
+              <button class="segment" type="button" data-value="compact">Compact</button>
+            </div>
+          </div>
+          <div class="control-grid">
+            <div class="field">
+              <label for="nameFontSize">Name size <span class="hint" id="nameFontSizeValue"></span></label>
+              <input id="nameFontSize" data-field="nameFontSize" type="range" min="-4" max="8" value="0">
+            </div>
+            <div class="field">
+              <label for="fontWeight">Name weight <span class="hint" id="fontWeightValue"></span></label>
+              <input id="fontWeight" data-field="fontWeight" type="range" min="500" max="800" step="100" value="700">
+            </div>
+            <div class="field">
+              <label for="lineHeightAdjust">Line height <span class="hint" id="lineHeightAdjustValue"></span></label>
+              <input id="lineHeightAdjust" data-field="lineHeightAdjust" type="range" min="-3" max="8" value="0">
+            </div>
+            <div class="field">
+              <label for="letterSpacing">Letter spacing <span class="hint" id="letterSpacingValue"></span></label>
+              <input id="letterSpacing" data-field="letterSpacing" type="range" min="0" max="1.2" step="0.1" value="0">
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="section" aria-labelledby="brandAssetsTitle">
+        <summary class="section-title" id="brandAssetsTitle">Brand asset sizing</summary>
+        <div class="section-body">
+          <div class="control-grid">
+            <div class="field">
+              <label for="logoScale">Logo size <span class="hint" id="logoScaleValue"></span></label>
+              <input id="logoScale" data-field="logoScale" type="range" min="80" max="130" value="100">
+            </div>
+            <div class="field">
+              <label for="awardScale">Award size <span class="hint" id="awardScaleValue"></span></label>
+              <input id="awardScale" data-field="awardScale" type="range" min="90" max="125" value="100">
+            </div>
+            <div class="field">
+              <label for="iconScale">Contact icons <span class="hint" id="iconScaleValue"></span></label>
+              <input id="iconScale" data-field="iconScale" type="range" min="85" max="130" value="100">
+            </div>
+            <div class="field">
+              <label for="socialScale">Social icons <span class="hint" id="socialScaleValue"></span></label>
+              <input id="socialScale" data-field="socialScale" type="range" min="85" max="130" value="100">
+            </div>
+          </div>
+        </div>
+      </details>
 
       <div class="warning-list" id="warnings" aria-live="polite"></div>
 
@@ -507,6 +879,8 @@
           <button class="btn btn-primary" type="button" id="copyOutlook">Copy for Outlook</button>
           <button class="btn btn-secondary" type="button" id="copyGmail">Copy for Gmail</button>
           <button class="btn btn-quiet" type="button" id="downloadHtml">Download HTML</button>
+          <button class="btn btn-quiet" type="button" id="downloadPng">Download PNG</button>
+          <button class="btn btn-quiet" type="button" id="copySource">Copy Source Code</button>
           <button class="btn btn-quiet" type="button" id="resetEmployee">Reset Employee Details</button>
         </div>
       </div>
@@ -518,16 +892,26 @@
           <h2>Live preview</h2>
           <p>This preview uses the same fixed Easystepin table layout used for Outlook and Gmail exports.</p>
         </div>
+        <div class="preview-tools" aria-label="Preview controls">
+          <button class="tool-button active" type="button" data-preview-mode="desktop">Desktop</button>
+          <button class="tool-button" type="button" data-preview-mode="mobile">Mobile</button>
+          <button class="tool-button" type="button" data-preview-mode="outlook">Outlook</button>
+          <button class="tool-button" type="button" data-preview-mode="gmail">Gmail</button>
+          <button class="tool-button" type="button" data-preview-env="light">Light</button>
+          <button class="tool-button" type="button" data-preview-env="dark">Dark</button>
+          <button class="tool-button" type="button" id="zoomOut">-</button>
+          <button class="tool-button" type="button" id="zoomIn">+</button>
+        </div>
       </div>
 
-      <div class="preview-shell">
+      <div class="preview-shell" id="previewShell">
         <div class="signature-stage" id="signaturePreview"></div>
       </div>
 
       <div class="notice-board" aria-label="Compatibility notes">
         <div class="notice"><strong>Outlook-safe</strong>Nested tables, inline CSS, fixed image dimensions, and spacer cells.</div>
         <div class="notice"><strong>Brand-controlled</strong>Company assets, links, colors, and spacing are locked in code.</div>
-        <div class="notice"><strong>Employee-ready</strong>Only personal details and an optional profile image are editable.</div>
+        <div class="notice"><strong>Employee-ready</strong>Only personal details, optional profile image, and approved templates are editable.</div>
       </div>
     </section>
   </main>
@@ -569,13 +953,51 @@
       };
 
       var defaults = {
+        templateId: "classic",
         name: "Gadi Sai Bharath",
         designation: "Digital Marketing Associate",
         phone: "+91-7013264201",
         email: "saibharath.gadi@easystepin.com",
         employeeLinkedin: "http://www.linkedin.com/in/gadisaibharath",
-        profileImage: ""
+        profileImage: "",
+        photoZoom: 100,
+        photoShape: "square",
+        density: "balanced",
+        signatureAlign: "left",
+        topPadding: 0,
+        bottomPadding: 0,
+        innerSpacing: 0,
+        rowSpacing: 0,
+        dividerSpacing: 0,
+        columnWidth: 0,
+        fontFamily: "Manrope, Arial, Helvetica, sans-serif",
+        typePreset: "classic",
+        nameFontSize: 0,
+        fontWeight: 700,
+        lineHeightAdjust: 0,
+        letterSpacing: 0,
+        logoScale: 100,
+        awardScale: 100,
+        iconScale: 100,
+        socialScale: 100,
+        previewMode: "desktop",
+        previewEnv: "light",
+        previewZoom: 100
       };
+
+      var templates = [
+        { id: "classic", name: "Classic", note: "Balanced original Easystepin hierarchy.", mini: "card", width: 625, top: 50, leftPad: 31, leftW: 214, dividerPad: 31, rightLead: 48, rightPad: 24, rightW: 306, nameSize: 23, designationSize: 14, dividerHeight: 88, sectionGap: 22, bottomPad: 42, contactIcon: 18, socialIcon: 18, socialGap: 12, awardSize: 108, awardGap: 10, logoW: 176, logoH: 64, logoPad: 57, logoCellW: 187, awardsCellW: 413, awardRightPad: 25, photoSize: 72, photoGap: 12, underlineW: 42 },
+        { id: "executive", name: "Executive", note: "Premium leadership style.", mini: "card", width: 650, top: 42, leftPad: 34, leftW: 230, dividerPad: 28, rightLead: 42, rightPad: 24, rightW: 320, nameSize: 26, designationSize: 14, dividerHeight: 96, sectionGap: 18, bottomPad: 36, contactIcon: 18, socialIcon: 19, socialGap: 13, awardSize: 110, awardGap: 8, logoW: 184, logoH: 67, logoPad: 52, logoCellW: 190, awardsCellW: 435, awardRightPad: 20, photoSize: 76, photoGap: 12, underlineW: 50 },
+        { id: "minimal", name: "Minimal", note: "Low-height, clean replies.", mini: "card", width: 610, top: 28, leftPad: 28, leftW: 216, dividerPad: 22, rightLead: 32, rightPad: 18, rightW: 306, nameSize: 23, designationSize: 13, dividerHeight: 72, sectionGap: 12, bottomPad: 24, contactIcon: 17, socialIcon: 17, socialGap: 10, awardSize: 96, awardGap: 6, logoW: 160, logoH: 58, logoPad: 46, logoCellW: 178, awardsCellW: 414, awardRightPad: 18, photoSize: 0, photoGap: 0, underlineW: 36 },
+        { id: "compact", name: "Compact", note: "Dense internal message style.", mini: "card", width: 590, top: 32, leftPad: 26, leftW: 204, dividerPad: 24, rightLead: 34, rightPad: 20, rightW: 294, nameSize: 22, designationSize: 13, dividerHeight: 78, sectionGap: 14, bottomPad: 28, contactIcon: 17, socialIcon: 17, socialGap: 10, awardSize: 98, awardGap: 7, logoW: 162, logoH: 59, logoPad: 44, logoCellW: 172, awardsCellW: 398, awardRightPad: 18, photoSize: 64, photoGap: 10, underlineW: 38 },
+        { id: "dark", name: "Dark Mode", note: "Dark environment-ready layout.", mini: "dark", width: 640, top: 38, leftPad: 32, leftW: 222, dividerPad: 28, rightLead: 40, rightPad: 22, rightW: 326, nameSize: 24, designationSize: 14, dividerHeight: 92, sectionGap: 16, bottomPad: 34, contactIcon: 18, socialIcon: 18, socialGap: 12, awardSize: 106, awardGap: 8, logoW: 176, logoH: 64, logoPad: 46, logoCellW: 190, awardsCellW: 428, awardRightPad: 22, photoSize: 72, photoGap: 12, underlineW: 46, background: "#101828", textColor: "#ffffff" },
+        { id: "modern-card", name: "Modern Card", note: "Soft SaaS card composition.", mini: "card", width: 670, top: 38, leftPad: 34, leftW: 232, dividerPad: 26, rightLead: 38, rightPad: 22, rightW: 348, nameSize: 25, designationSize: 14, dividerHeight: 84, sectionGap: 16, bottomPad: 32, contactIcon: 19, socialIcon: 19, socialGap: 12, awardSize: 110, awardGap: 7, logoW: 184, logoH: 67, logoPad: 54, logoCellW: 202, awardsCellW: 446, awardRightPad: 22, photoSize: 78, photoGap: 12, underlineW: 48 },
+        { id: "banner", name: "Banner Style", note: "Stronger brand bar emphasis.", mini: "banner", width: 660, top: 38, leftPad: 32, leftW: 226, dividerPad: 28, rightLead: 40, rightPad: 22, rightW: 342, nameSize: 24, designationSize: 14, dividerHeight: 90, sectionGap: 10, bottomPad: 34, contactIcon: 18, socialIcon: 18, socialGap: 12, awardSize: 110, awardGap: 8, logoW: 180, logoH: 65, logoPad: 48, logoCellW: 198, awardsCellW: 440, awardRightPad: 22, photoSize: 70, photoGap: 12, underlineW: 56 },
+        { id: "center", name: "Center Aligned", note: "Centered footer composition.", mini: "center", width: 650, top: 40, leftPad: 32, leftW: 226, dividerPad: 28, rightLead: 42, rightPad: 24, rightW: 328, nameSize: 24, designationSize: 14, dividerHeight: 88, sectionGap: 18, bottomPad: 36, contactIcon: 18, socialIcon: 18, socialGap: 12, awardSize: 108, awardGap: 8, logoW: 176, logoH: 64, logoPad: 52, logoCellW: 196, awardsCellW: 430, awardRightPad: 24, photoSize: 72, photoGap: 12, underlineW: 44, align: "center" },
+        { id: "photo", name: "Photo-Focused", note: "Larger employee image presence.", mini: "card", width: 640, top: 36, leftPad: 30, leftW: 230, dividerPad: 28, rightLead: 42, rightPad: 22, rightW: 316, nameSize: 23, designationSize: 14, dividerHeight: 104, sectionGap: 16, bottomPad: 34, contactIcon: 18, socialIcon: 18, socialGap: 12, awardSize: 106, awardGap: 8, logoW: 176, logoH: 64, logoPad: 52, logoCellW: 192, awardsCellW: 426, awardRightPad: 22, photoSize: 92, photoGap: 14, underlineW: 42 },
+        { id: "sales", name: "Sales/Marketing", note: "Bigger social and award presence.", mini: "banner", width: 675, top: 42, leftPad: 32, leftW: 222, dividerPad: 30, rightLead: 42, rightPad: 22, rightW: 348, nameSize: 23, designationSize: 14, dividerHeight: 90, sectionGap: 14, bottomPad: 34, contactIcon: 18, socialIcon: 22, socialGap: 14, awardSize: 122, awardGap: 4, logoW: 176, logoH: 64, logoPad: 48, logoCellW: 184, awardsCellW: 469, awardRightPad: 14, photoSize: 70, photoGap: 12, underlineW: 44 },
+        { id: "corporate", name: "Corporate Clean", note: "Polished default for teams.", mini: "card", width: 640, top: 44, leftPad: 32, leftW: 220, dividerPad: 30, rightLead: 44, rightPad: 24, rightW: 322, nameSize: 24, designationSize: 14, dividerHeight: 92, sectionGap: 18, bottomPad: 38, contactIcon: 19, socialIcon: 20, socialGap: 13, awardSize: 108, awardGap: 8, logoW: 180, logoH: 65, logoPad: 54, logoCellW: 194, awardsCellW: 421, awardRightPad: 25, photoSize: 72, photoGap: 12, underlineW: 44 }
+      ];
 
       var state = mergeState(defaults, loadState());
       var fields = Array.prototype.slice.call(document.querySelectorAll("[data-field]"));
@@ -584,18 +1006,42 @@
       var saveStatus = document.getElementById("saveStatus");
       var photoInput = document.getElementById("profileImageInput");
       var photoThumb = document.getElementById("photoThumb");
+      var templateGrid = document.getElementById("templateGrid");
+      var previewShell = document.getElementById("previewShell");
       var saveTimer = null;
+      var history = [];
+      var future = [];
+      var restoringHistory = false;
+      if (!templates.some(function (template) { return template.id === state.templateId; })) {
+        state.templateId = defaults.templateId;
+      }
 
       hydrateFields();
+      renderTemplateControls();
       bindEvents();
       render();
 
       function bindEvents() {
         fields.forEach(function (field) {
           field.addEventListener("input", function () {
-            state[field.dataset.field] = field.value;
+            commitChange(function () {
+              state[field.dataset.field] = field.type === "range" ? Number(field.value) : field.value;
+            });
             render();
             persist();
+          });
+        });
+
+        Array.prototype.slice.call(document.querySelectorAll("[data-segment-group]")).forEach(function (group) {
+          Array.prototype.slice.call(group.querySelectorAll("[data-value]")).forEach(function (button) {
+            button.addEventListener("click", function () {
+              commitChange(function () {
+                state[group.dataset.segmentGroup] = button.dataset.value;
+              });
+              hydrateFields();
+              render();
+              persist();
+            });
           });
         });
 
@@ -606,6 +1052,21 @@
           }
         });
 
+        var photoDrop = document.querySelector(".photo-drop");
+        photoDrop.addEventListener("dragover", function (event) {
+          event.preventDefault();
+          photoDrop.classList.add("dragover");
+        });
+        photoDrop.addEventListener("dragleave", function () {
+          photoDrop.classList.remove("dragover");
+        });
+        photoDrop.addEventListener("drop", function (event) {
+          event.preventDefault();
+          photoDrop.classList.remove("dragover");
+          var file = event.dataTransfer.files && event.dataTransfer.files[0];
+          if (file) handleProfileImage(file);
+        });
+
         document.getElementById("copyOutlook").addEventListener("click", function () {
           copySignature("outlook");
         });
@@ -613,7 +1074,73 @@
           copySignature("gmail");
         });
         document.getElementById("downloadHtml").addEventListener("click", downloadHtml);
+        document.getElementById("downloadPng").addEventListener("click", downloadPng);
+        document.getElementById("copySource").addEventListener("click", copySourceCode);
         document.getElementById("resetEmployee").addEventListener("click", resetEmployeeDetails);
+        document.getElementById("undoButton").addEventListener("click", undo);
+        document.getElementById("redoButton").addEventListener("click", redo);
+        document.getElementById("zoomOut").addEventListener("click", function () {
+          commitChange(function () {
+            state.previewZoom = Math.max(60, Number(state.previewZoom || 100) - 10);
+          });
+          render();
+          persist();
+        });
+        document.getElementById("zoomIn").addEventListener("click", function () {
+          commitChange(function () {
+            state.previewZoom = Math.min(140, Number(state.previewZoom || 100) + 10);
+          });
+          render();
+          persist();
+        });
+        Array.prototype.slice.call(document.querySelectorAll("[data-preview-mode]")).forEach(function (button) {
+          button.addEventListener("click", function () {
+            state.previewMode = button.dataset.previewMode;
+            render();
+            persist();
+          });
+        });
+        Array.prototype.slice.call(document.querySelectorAll("[data-preview-env]")).forEach(function (button) {
+          button.addEventListener("click", function () {
+            state.previewEnv = button.dataset.previewEnv;
+            render();
+            persist();
+          });
+        });
+      }
+
+      function renderTemplateControls() {
+        templateGrid.innerHTML = templates.map(function (template) {
+          var active = template.id === state.templateId ? " active" : "";
+          return [
+            '<button class="template-option' + active + '" type="button" data-template="' + attr(template.id) + '" aria-pressed="' + (active ? "true" : "false") + '">',
+              miniPreview(template),
+              '<span><strong>' + escapeHtml(template.name) + '</strong><span>' + escapeHtml(template.note) + '</span></span>',
+            '</button>'
+          ].join("");
+        }).join("");
+
+        Array.prototype.slice.call(templateGrid.querySelectorAll("[data-template]")).forEach(function (button) {
+          button.addEventListener("click", function () {
+            commitChange(function () {
+              state.templateId = button.dataset.template;
+            });
+            renderTemplateControls();
+            render();
+            persist();
+            toast("Template updated.");
+          });
+        });
+      }
+
+      function miniPreview(template) {
+        return [
+          '<span class="mini-preview ' + attr(template.mini || "") + '">',
+            '<span class="mini-lines"><i class="mini-line"></i><i class="mini-line short"></i><i class="mini-line tiny"></i></span>',
+            template.mini === "center" ? "" : '<i class="mini-divider"></i>',
+            '<span class="mini-contact"><i class="mini-line tiny"></i><i class="mini-line short"></i><span class="mini-dots"><i></i><i></i><i></i></span><span class="mini-awards"><i></i><i></i><i></i></span></span>',
+          '</span>'
+        ].join("");
       }
 
       function handleProfileImage(file) {
@@ -626,7 +1153,9 @@
         }
         var reader = new FileReader();
         reader.onload = function () {
-          state.profileImage = String(reader.result);
+          commitChange(function () {
+            state.profileImage = String(reader.result);
+          });
           render();
           persist();
           toast("Profile image updated.");
@@ -640,17 +1169,35 @@
             field.value = state[field.dataset.field];
           }
         });
+        Array.prototype.slice.call(document.querySelectorAll("[data-segment-group]")).forEach(function (group) {
+          var value = state[group.dataset.segmentGroup];
+          Array.prototype.slice.call(group.querySelectorAll("[data-value]")).forEach(function (button) {
+            button.classList.toggle("active", button.dataset.value === value);
+          });
+        });
+        updateRangeLabels();
       }
 
       function render() {
-        preview.innerHTML = buildSignatureHtml({ mode: "preview" });
+        var mode = state.previewMode === "outlook" ? "outlook" : (state.previewMode === "gmail" ? "gmail" : "preview");
+        preview.innerHTML = buildSignatureHtml({ mode: mode });
+        preview.style.transform = "scale(" + (Number(state.previewZoom || 100) / 100) + ")";
+        previewShell.classList.toggle("dark-env", state.previewEnv === "dark");
+        previewShell.classList.toggle("mobile-mode", state.previewMode === "mobile");
+        Array.prototype.slice.call(document.querySelectorAll("[data-preview-mode]")).forEach(function (button) {
+          button.classList.toggle("active", button.dataset.previewMode === state.previewMode);
+        });
+        Array.prototype.slice.call(document.querySelectorAll("[data-preview-env]")).forEach(function (button) {
+          button.classList.toggle("active", button.dataset.previewEnv === state.previewEnv);
+        });
         renderPhotoThumb();
+        hydrateFields();
         renderWarnings();
       }
 
       function renderPhotoThumb() {
         if (state.profileImage) {
-          photoThumb.outerHTML = '<img id="photoThumb" class="photo-preview" src="' + attr(state.profileImage) + '" alt="">';
+          photoThumb.outerHTML = '<img id="photoThumb" class="photo-preview" src="' + attr(state.profileImage) + '" alt="" style="--photo-zoom:' + (Number(state.photoZoom || 100) / 100) + ';--photo-radius:' + photoRadius(state.photoShape) + ';">';
           photoThumb = document.getElementById("photoThumb");
           return;
         }
@@ -662,95 +1209,134 @@
         var mode = options && options.mode || "gmail";
         var minify = mode !== "preview";
         var s = normalizedState();
+        var t = getTemplate(s.templateId, s);
         var mso = mode === "outlook" ? "mso-line-height-rule:exactly;" : "";
         var tableReset = "border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;";
-        var font = "font-family:" + brand.font + ";";
+        var font = "font-family:" + s.fontFamily + ";";
         var link = "color:" + brand.colors.blue + ";text-decoration:none;border:0;outline:none;";
         var img = "display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;";
-        var signatureWidth = 625;
-        var leftPad = 31;
-        var rightPad = 24;
-        var rightLead = 48;
-        var leftW = 214;
+        var signatureWidth = t.width;
+        var leftPad = t.leftPad;
+        var rightPad = t.rightPad;
+        var rightLead = t.rightLead;
+        var leftW = t.leftW;
         var dividerW = 2;
-        var rightW = 306;
-        var contactIcon = 14;
-        var socialIcon = 14;
+        var rightW = t.rightW;
+        var contactIcon = t.contactIcon;
+        var socialIcon = t.socialIcon;
         var employeeLinkedin = s.employeeLinkedin ? socialIconLink(s.employeeLinkedin, brand.icons.linkedin, contactIcon, "Employee LinkedIn", link, img, 0) : "";
-        var photo = s.profileImage ? [
-          '<tr><td style="padding:0 0 12px 0;">',
-            imageTag(s.profileImage, 72, 72, s.name + " profile image", img + "width:72px;height:72px;max-width:72px;object-fit:cover;"),
+        var photo = s.profileImage && t.photoSize ? [
+          '<tr><td style="padding:0 0 ' + t.photoGap + 'px 0;">',
+            imageTag(s.profileImage, t.photoSize, t.photoSize, s.name + " profile image", img + "width:" + t.photoSize + "px;height:" + t.photoSize + "px;max-width:" + t.photoSize + "px;object-fit:cover;border-radius:" + photoRadius(s.photoShape) + ";"),
           '</td></tr>'
         ].join("") : "";
         var socialHtml = [
-          socialIconLink(brand.linkedin, brand.icons.linkedin, socialIcon, "Easystepin LinkedIn", link, img, 10),
-          socialIconLink(brand.facebook, brand.icons.facebook, socialIcon, "Easystepin Facebook", link, img, 10),
-          socialIconLink(brand.instagram, brand.icons.instagram, socialIcon, "Easystepin Instagram", link, img, 10),
+          socialIconLink(brand.linkedin, brand.icons.linkedin, socialIcon, "Easystepin LinkedIn", link, img, t.socialGap),
+          socialIconLink(brand.facebook, brand.icons.facebook, socialIcon, "Easystepin Facebook", link, img, t.socialGap),
+          socialIconLink(brand.instagram, brand.icons.instagram, socialIcon, "Easystepin Instagram", link, img, t.socialGap),
           socialIconLink(brand.youtube, brand.icons.youtube, socialIcon, "Easystepin YouTube", link, img, 0)
         ].join("");
         var awards = brand.awards.map(function (src, index) {
-          return '<td style="padding:0 ' + (index === brand.awards.length - 1 ? 0 : 24) + 'px 0 0;">' + imageTag(src, 92, 92, "Easystepin award", img) + '</td>';
+          return '<td style="padding:0 ' + (index === brand.awards.length - 1 ? 0 : t.awardGap) + 'px 0 0;">' + imageTag(src, t.awardSize, t.awardSize, "Easystepin award", img) + '</td>';
         }).join("");
 
         var html = [
-          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="left" width="' + signatureWidth + '" style="' + tableReset + 'width:' + signatureWidth + 'px;background-color:' + brand.colors.background + ';">',
-            '<tr><td colspan="3" height="50" style="height:50px;line-height:50px;font-size:1px;">&nbsp;</td></tr>',
+          '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="' + attr(t.align) + '" width="' + signatureWidth + '" style="' + tableReset + 'width:' + signatureWidth + 'px;background-color:' + t.background + ';">',
+            '<tr><td colspan="3" height="' + t.top + '" style="height:' + t.top + 'px;line-height:' + t.top + 'px;font-size:1px;">&nbsp;</td></tr>',
             '<tr>',
               '<td valign="top" width="' + leftW + '" style="width:' + leftW + 'px;padding:0 0 0 ' + leftPad + 'px;' + font + '">',
                 '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="' + tableReset + 'width:100%;">',
                   photo,
-                  '<tr><td style="' + font + 'font-size:23px;line-height:28px;' + mso + 'font-weight:700;letter-spacing:0;color:' + brand.colors.blue + ';padding:0 0 1px 0;">' + escapeHtml(s.name) + '</td></tr>',
-                  '<tr><td style="' + font + 'font-size:14px;line-height:19px;' + mso + 'font-weight:400;letter-spacing:0;color:' + brand.colors.text + ';padding:0 0 6px 0;">' + escapeHtml(s.designation) + '</td></tr>',
-                  '<tr><td style="padding:0 0 15px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="42" style="' + tableReset + 'width:42px;"><tr><td height="3" style="height:3px;line-height:3px;font-size:3px;background-color:' + brand.colors.blue + ';">&nbsp;</td></tr></table></td></tr>',
+                  '<tr><td style="' + font + 'font-size:' + t.nameSize + 'px;line-height:' + (t.nameSize + 5 + t.lineHeightAdjust) + 'px;' + mso + 'font-weight:' + s.fontWeight + ';letter-spacing:' + s.letterSpacing + 'px;color:' + brand.colors.blue + ';padding:0 0 1px 0;">' + escapeHtml(s.name) + '</td></tr>',
+                  '<tr><td style="' + font + 'font-size:' + t.designationSize + 'px;line-height:' + (t.designationSize + 5 + t.lineHeightAdjust) + 'px;' + mso + 'font-weight:400;letter-spacing:' + s.letterSpacing + 'px;color:' + t.textColor + ';padding:0 0 ' + (6 + t.innerSpacing) + 'px 0;">' + escapeHtml(s.designation) + '</td></tr>',
+                  '<tr><td style="padding:0 0 ' + (15 + t.innerSpacing) + 'px 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0" width="' + t.underlineW + '" style="' + tableReset + 'width:' + t.underlineW + 'px;"><tr><td height="3" style="height:3px;line-height:3px;font-size:3px;background-color:' + brand.colors.blue + ';">&nbsp;</td></tr></table></td></tr>',
                   '<tr><td style="padding:0;">',
                     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="' + tableReset + '">',
                       '<tr>',
                         '<td style="padding:0;">' + imageTag(brand.icons.phone, contactIcon, contactIcon, "Phone", img) + '</td>',
-                        '<td style="' + font + 'font-size:11px;line-height:16px;' + mso + 'color:' + brand.colors.blue + ';padding:0 14px 0 6px;white-space:nowrap;"><a href="tel:' + attr(cleanPhone(s.phone)) + '" style="' + link + '">' + escapeHtml(s.phone) + '</a></td>',
+                        '<td style="' + font + 'font-size:' + t.contactFontSize + 'px;line-height:' + t.contactLineHeight + 'px;' + mso + 'color:' + brand.colors.blue + ';padding:0 14px 0 8px;white-space:nowrap;"><a href="tel:' + attr(cleanPhone(s.phone)) + '" style="' + link + '">' + escapeHtml(s.phone) + '</a></td>',
                         employeeLinkedin,
                       '</tr>',
                     '</table>',
                   '</td></tr>',
                 '</table>',
               '</td>',
-              '<td valign="top" width="' + dividerW + '" style="width:' + dividerW + 'px;padding:0 0 0 31px;">',
-                '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="2" style="' + tableReset + 'width:2px;"><tr><td width="2" height="88" style="width:2px;height:88px;line-height:88px;font-size:1px;background-color:' + brand.colors.divider + ';">&nbsp;</td></tr></table>',
+              '<td valign="top" width="' + dividerW + '" style="width:' + dividerW + 'px;padding:0 0 0 ' + (t.dividerPad + t.dividerSpacing) + 'px;">',
+                '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="2" style="' + tableReset + 'width:2px;"><tr><td width="2" height="' + t.dividerHeight + '" style="width:2px;height:' + t.dividerHeight + 'px;line-height:' + t.dividerHeight + 'px;font-size:1px;background-color:' + brand.colors.divider + ';">&nbsp;</td></tr></table>',
               '</td>',
               '<td valign="top" width="' + rightW + '" style="width:' + rightW + 'px;padding:18px ' + rightPad + 'px 0 ' + rightLead + 'px;' + font + '">',
-                contactRow(brand.icons.mail, "mailto:" + s.email, s.email, contactIcon, link, img, mso, 0),
-                contactRow(brand.icons.web, brand.websiteUrl, brand.website, contactIcon, link, img, mso, 9),
+                contactRow(brand.icons.mail, "mailto:" + s.email, s.email, contactIcon, link, img, mso, 0, s.fontFamily, t),
+                contactRow(brand.icons.web, brand.websiteUrl, brand.website, contactIcon, link, img, mso, 9 + t.rowSpacing, s.fontFamily, t),
                 '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="' + tableReset + '"><tr><td height="12" style="height:12px;line-height:12px;font-size:1px;">&nbsp;</td></tr></table>',
                 '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="' + tableReset + '"><tr>' + socialHtml + '</tr></table>',
               '</td>',
             '</tr>',
             '<tr><td colspan="3" height="16" style="height:16px;line-height:16px;font-size:1px;">&nbsp;</td></tr>',
             '<tr><td colspan="3" height="3" style="height:3px;line-height:3px;font-size:1px;background-color:' + brand.colors.divider + ';">&nbsp;</td></tr>',
-            '<tr><td colspan="3" height="22" style="height:22px;line-height:22px;font-size:1px;">&nbsp;</td></tr>',
+            '<tr><td colspan="3" height="' + t.sectionGap + '" style="height:' + t.sectionGap + 'px;line-height:' + t.sectionGap + 'px;font-size:1px;">&nbsp;</td></tr>',
             '<tr>',
               '<td colspan="3" style="padding:0;">',
                 '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="' + signatureWidth + '" style="' + tableReset + 'width:' + signatureWidth + 'px;">',
                   '<tr>',
-                    '<td valign="middle" width="187" style="width:187px;padding:0 0 0 57px;">' + imageTag(brand.logo, 176, 64, "Easystepin", img) + '</td>',
-                    '<td valign="middle" align="right" width="413" style="width:413px;padding:0 25px 0 0;">',
+                    '<td valign="middle" width="' + t.logoCellW + '" style="width:' + t.logoCellW + 'px;padding:0 0 0 ' + t.logoPad + 'px;">' + imageTag(brand.logo, t.logoW, t.logoH, "Easystepin", img) + '</td>',
+                    '<td valign="middle" align="right" width="' + t.awardsCellW + '" style="width:' + t.awardsCellW + 'px;padding:0 ' + t.awardRightPad + 'px 0 0;">',
                       '<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right" style="' + tableReset + '"><tr>' + awards + '</tr></table>',
                     '</td>',
                   '</tr>',
                 '</table>',
               '</td>',
             '</tr>',
-            '<tr><td colspan="3" height="42" style="height:42px;line-height:42px;font-size:1px;">&nbsp;</td></tr>',
+            '<tr><td colspan="3" height="' + t.bottomPad + '" style="height:' + t.bottomPad + 'px;line-height:' + t.bottomPad + 'px;font-size:1px;">&nbsp;</td></tr>',
           '</table>'
         ].join("");
 
         return minify ? minifyHtml(html) : html;
       }
 
-      function contactRow(src, href, text, iconSize, link, imgStyle, mso, topPadding) {
+      function getTemplate(id, s) {
+        var template = templates.filter(function (item) {
+          return item.id === id;
+        })[0] || templates[0];
+        var locked = {};
+        Object.keys(template).forEach(function (key) {
+          locked[key] = template[key];
+        });
+        var density = s.density === "compact" ? -12 : (s.density === "wide" ? 22 : 0);
+        var typeDelta = s.typePreset === "strong" ? 2 : (s.typePreset === "compact" ? -1 : 0);
+        locked.width = locked.width + density;
+        locked.top = Math.max(12, locked.top + s.topPadding + (s.density === "compact" ? -8 : 0));
+        locked.bottomPad = Math.max(12, locked.bottomPad + s.bottomPadding + (s.density === "compact" ? -8 : 0));
+        locked.leftW = Math.max(174, locked.leftW + s.columnWidth);
+        locked.rightW = Math.max(250, locked.rightW + Math.round(s.columnWidth / 2));
+        locked.innerSpacing = s.innerSpacing;
+        locked.rowSpacing = s.rowSpacing;
+        locked.dividerSpacing = s.dividerSpacing;
+        locked.lineHeightAdjust = s.lineHeightAdjust;
+        locked.nameSize = Math.max(18, locked.nameSize + s.nameFontSize + typeDelta);
+        locked.designationSize = Math.max(11, locked.designationSize + Math.min(typeDelta, 1));
+        locked.contactFontSize = Math.max(10, 12 + Math.round(s.iconScale / 35));
+        locked.contactLineHeight = Math.max(16, 18 + s.lineHeightAdjust);
+        locked.contactIcon = Math.round(28 * s.iconScale / 100);
+        locked.socialIcon = Math.round(28 * s.socialScale / 100);
+        locked.logoW = Math.round(locked.logoW * s.logoScale / 100);
+        locked.logoH = Math.round(locked.logoH * s.logoScale / 100);
+        locked.awardSize = Math.round(136 * s.awardScale / 100);
+        locked.awardGap = 4;
+        locked.logoPad = 0;
+        locked.background = locked.background || brand.colors.background;
+        locked.textColor = locked.textColor || brand.colors.text;
+        locked.align = s.signatureAlign === "center" || s.signatureAlign === "right" ? s.signatureAlign : (locked.align || "left");
+        locked.logoCellW = Math.min(Math.max(locked.logoW + 8, locked.logoCellW - 40), locked.width - locked.awardRightPad - (locked.awardSize * brand.awards.length) - (locked.awardGap * (brand.awards.length - 1)));
+        locked.awardsCellW = locked.width - locked.logoCellW - locked.awardRightPad;
+        return locked;
+      }
+
+      function contactRow(src, href, text, iconSize, link, imgStyle, mso, topPadding, fontFamily, t) {
         return [
           '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;margin:0;">',
             '<tr>',
               '<td style="padding:' + topPadding + 'px 8px 0 0;">' + imageTag(src, iconSize, iconSize, "", imgStyle) + '</td>',
-              '<td style="font-family:' + brand.font + ';font-size:12px;line-height:16px;' + mso + 'letter-spacing:0;color:' + brand.colors.blue + ';padding:' + topPadding + 'px 0 0 0;white-space:nowrap;"><a href="' + attr(href) + '" style="' + link + '">' + escapeHtml(text) + '</a></td>',
+              '<td style="font-family:' + fontFamily + ';font-size:' + t.contactFontSize + 'px;line-height:' + t.contactLineHeight + 'px;' + mso + 'letter-spacing:0;color:' + brand.colors.blue + ';padding:' + topPadding + 'px 0 0 0;white-space:nowrap;"><a href="' + attr(href) + '" style="' + link + '">' + escapeHtml(text) + '</a></td>',
             '</tr>',
           '</table>'
         ].join("");
@@ -812,12 +1398,98 @@
         URL.revokeObjectURL(link.href);
       }
 
+      function copySourceCode() {
+        var source = buildSignatureHtml({ mode: "outlook" });
+        navigator.clipboard.writeText(source).then(function () {
+          toast("Source code copied.");
+        }).catch(function () {
+          fallbackCopy("<pre>" + escapeHtml(source) + "</pre>");
+        });
+      }
+
+      function downloadPng() {
+        var s = normalizedState();
+        var t = getTemplate(s.templateId, s);
+        var html = buildSignatureHtml({ mode: "preview" });
+        var height = t.top + Math.max(t.dividerHeight, t.photoSize + 72) + 16 + 3 + t.sectionGap + t.awardSize + t.bottomPad;
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + t.width + '" height="' + height + '"><foreignObject width="100%" height="100%"><div xmlns="http://www.w3.org/1999/xhtml">' + html + '</div></foreignObject></svg>';
+        var image = new Image();
+        image.onload = function () {
+          try {
+            var canvas = document.createElement("canvas");
+            canvas.width = t.width * 2;
+            canvas.height = height * 2;
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = t.background;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.scale(2, 2);
+            ctx.drawImage(image, 0, 0);
+            canvas.toBlob(function (blob) {
+              if (!blob) {
+                toast("PNG could not be generated.");
+                return;
+              }
+              saveBlob(blob, "easystepin-email-signature.png");
+              toast("PNG downloaded.");
+            }, "image/png");
+          } catch (error) {
+            toast("PNG export works best with local embedded assets. HTML export remains safest.");
+          }
+        };
+        image.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+      }
+
       function resetEmployeeDetails() {
-        state = mergeState(defaults, {});
-        localStorage.removeItem(STORAGE_KEY);
+        var templateId = state.templateId;
+        commitChange(function () {
+          state = mergeState(defaults, { templateId: templateId });
+        });
         hydrateFields();
+        renderTemplateControls();
         render();
+        persist();
         toast("Employee details reset.");
+      }
+
+      function commitChange(mutator) {
+        if (!restoringHistory) {
+          history.push(JSON.stringify(state));
+          if (history.length > 30) history.shift();
+          future = [];
+        }
+        mutator();
+      }
+
+      function undo() {
+        if (!history.length) {
+          toast("Nothing to undo.");
+          return;
+        }
+        future.push(JSON.stringify(state));
+        restoringHistory = true;
+        state = mergeState(defaults, JSON.parse(history.pop()));
+        restoringHistory = false;
+        hydrateFields();
+        renderTemplateControls();
+        render();
+        persist();
+        toast("Undone.");
+      }
+
+      function redo() {
+        if (!future.length) {
+          toast("Nothing to redo.");
+          return;
+        }
+        history.push(JSON.stringify(state));
+        restoringHistory = true;
+        state = mergeState(defaults, JSON.parse(future.pop()));
+        restoringHistory = false;
+        hydrateFields();
+        renderTemplateControls();
+        render();
+        persist();
+        toast("Redone.");
       }
 
       function persist() {
@@ -858,6 +1530,30 @@
         s.email = String(s.email || "").trim();
         s.employeeLinkedin = normalizeUrl(s.employeeLinkedin);
         s.profileImage = /^data:image\//i.test(String(s.profileImage || "")) ? s.profileImage : "";
+        s.templateId = templates.some(function (template) { return template.id === s.templateId; }) ? s.templateId : defaults.templateId;
+        s.photoZoom = clampNumber(s.photoZoom, 100, 160, defaults.photoZoom);
+        s.photoShape = ["square", "rounded", "circle"].indexOf(s.photoShape) > -1 ? s.photoShape : defaults.photoShape;
+        s.density = ["compact", "balanced", "wide"].indexOf(s.density) > -1 ? s.density : defaults.density;
+        s.signatureAlign = ["left", "center", "right"].indexOf(s.signatureAlign) > -1 ? s.signatureAlign : defaults.signatureAlign;
+        s.topPadding = clampNumber(s.topPadding, -20, 40, defaults.topPadding);
+        s.bottomPadding = clampNumber(s.bottomPadding, -20, 40, defaults.bottomPadding);
+        s.innerSpacing = clampNumber(s.innerSpacing, -8, 16, defaults.innerSpacing);
+        s.rowSpacing = clampNumber(s.rowSpacing, -6, 16, defaults.rowSpacing);
+        s.dividerSpacing = clampNumber(s.dividerSpacing, -18, 24, defaults.dividerSpacing);
+        s.columnWidth = clampNumber(s.columnWidth, -28, 38, defaults.columnWidth);
+        s.fontFamily = String(s.fontFamily || defaults.fontFamily);
+        s.typePreset = ["classic", "strong", "compact"].indexOf(s.typePreset) > -1 ? s.typePreset : defaults.typePreset;
+        s.nameFontSize = clampNumber(s.nameFontSize, -4, 8, defaults.nameFontSize);
+        s.fontWeight = clampNumber(s.fontWeight, 500, 800, defaults.fontWeight);
+        s.lineHeightAdjust = clampNumber(s.lineHeightAdjust, -3, 8, defaults.lineHeightAdjust);
+        s.letterSpacing = Math.min(1.2, Math.max(0, Number(s.letterSpacing) || 0));
+        s.logoScale = clampNumber(s.logoScale, 80, 130, defaults.logoScale);
+        s.awardScale = clampNumber(s.awardScale, 90, 125, defaults.awardScale);
+        s.iconScale = clampNumber(s.iconScale, 85, 130, defaults.iconScale);
+        s.socialScale = clampNumber(s.socialScale, 85, 130, defaults.socialScale);
+        s.previewMode = ["desktop", "mobile", "outlook", "gmail"].indexOf(s.previewMode) > -1 ? s.previewMode : defaults.previewMode;
+        s.previewEnv = s.previewEnv === "dark" ? "dark" : "light";
+        s.previewZoom = clampNumber(s.previewZoom, 60, 140, defaults.previewZoom);
         return s;
       }
 
@@ -887,6 +1583,47 @@
 
       function cleanPhone(value) {
         return String(value || "").replace(/[^\d+]/g, "");
+      }
+
+      function clampNumber(value, min, max, fallback) {
+        var n = Number(value);
+        if (!Number.isFinite(n)) return fallback;
+        return Math.min(max, Math.max(min, Math.round(n * 10) / 10));
+      }
+
+      function photoRadius(shape) {
+        if (shape === "circle") return "999px";
+        if (shape === "rounded") return "10px";
+        return "0";
+      }
+
+      function updateRangeLabels() {
+        var labels = {
+          photoZoom: state.photoZoom + "%",
+          topPadding: signedPx(state.topPadding),
+          bottomPadding: signedPx(state.bottomPadding),
+          innerSpacing: signedPx(state.innerSpacing),
+          rowSpacing: signedPx(state.rowSpacing),
+          dividerSpacing: signedPx(state.dividerSpacing),
+          columnWidth: signedPx(state.columnWidth),
+          nameFontSize: signedPx(state.nameFontSize),
+          fontWeight: state.fontWeight,
+          lineHeightAdjust: signedPx(state.lineHeightAdjust),
+          letterSpacing: state.letterSpacing + "px",
+          logoScale: state.logoScale + "%",
+          awardScale: state.awardScale + "%",
+          iconScale: state.iconScale + "%",
+          socialScale: state.socialScale + "%"
+        };
+        Object.keys(labels).forEach(function (key) {
+          var el = document.getElementById(key + "Value");
+          if (el) el.textContent = labels[key];
+        });
+      }
+
+      function signedPx(value) {
+        value = Number(value) || 0;
+        return (value > 0 ? "+" : "") + value + "px";
       }
 
       function escapeHtml(value) {
